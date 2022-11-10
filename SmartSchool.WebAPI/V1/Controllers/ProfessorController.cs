@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
-using SmartSchool.WebAPI.DTOs;
 using SmartSchool.WebAPI.Models;
+using SmartSchool.WebAPI.V1.DTOs;
 
-namespace SmartSchool.WebAPI.Controllers
+namespace SmartSchool.WebAPI.V1.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ProfessorController : ControllerBase
     {
         private readonly IRepository _repo;
@@ -21,6 +20,10 @@ namespace SmartSchool.WebAPI.Controllers
             _repo = repo;
         }
 
+        /// <summary>
+        /// Método responsável em retornar todos os professores
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {

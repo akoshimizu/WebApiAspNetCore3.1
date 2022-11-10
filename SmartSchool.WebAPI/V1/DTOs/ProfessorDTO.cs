@@ -1,4 +1,4 @@
-namespace SmartSchool.WebAPI.DTOs
+namespace SmartSchool.WebAPI.V1.DTOs
 {
     public class ProfessorDTO
     {

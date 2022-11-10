@@ -1,16 +1,18 @@
 using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SmartSchool.WebAPI.Data;
-using SmartSchool.WebAPI.DTOs;
 using SmartSchool.WebAPI.Models;
+using SmartSchool.WebAPI.V1.DTOs;
 
-namespace SmartSchool.WebAPI.Controllers
+namespace SmartSchool.WebAPI.V1.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class AlunoController : ControllerBase
     {
         private readonly IRepository _repo;
@@ -22,7 +24,10 @@ namespace SmartSchool.WebAPI.Controllers
             _repo = repo;
         }
 
-
+        /// <summary>
+        /// Método responsável para retornar todos os meus alunos.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -31,6 +36,10 @@ namespace SmartSchool.WebAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<AlunoDTO>>(alunos));
         }
 
+        /// <summary>
+        /// Método responsável por retornar apenas um único AlunoDTO.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetRegister")]
         public IActionResult GetRegister()
         {
@@ -38,7 +47,11 @@ namespace SmartSchool.WebAPI.Controllers
         }
 
 
-        // api/aluno/byId
+        /// <summary>
+        /// Método responsável por retornar apenas um Aluno por Código Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
